@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: topsongapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: topsongapi
+  template:
+    metadata:
+      labels:
+        app: topsongapi
+    spec:
+      containers:
+      - name: spotifyapi
+        image: topsongapi
+        ports:
+        - containerPort: 3000
