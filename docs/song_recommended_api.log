@@ -1,0 +1,3 @@
+2024-03-25 14:56:01,397 - INFO - Loading output data to mysql table
+2024-03-25 14:56:03,227 - INFO - Data successfully written to MySQL table
+2024-03-25 14:56:03,227 - INFO - Data from DataFrame written to MySQL table. 6513 rows processed. Time taken: 1.83 seconds
