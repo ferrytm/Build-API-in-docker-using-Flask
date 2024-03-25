@@ -1,0 +1,6 @@
+#Known Troubleshoot
+
+#loading to Mysql Error (Module MysqlDB not found)
+#Solution: open anaconda terminal and install connector for mysql
+
+pip install mysqlclient
