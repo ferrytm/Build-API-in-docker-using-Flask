@@ -7,6 +7,6 @@ spec:
     spec:
       containers:
       - name: load-data-container
-        image: asia.gcr.io/bfitask-k8s/load-data:latest  
+        image: gcr.io/bfitask-k8s/load-data:latest  
         command: ["python", "load_data.py"]
       restartPolicy: Never
