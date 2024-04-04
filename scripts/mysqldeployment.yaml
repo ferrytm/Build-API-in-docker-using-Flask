@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mysql:latest
+        image: masia.gcr.io/bfi-task/mysqldb:latest
         ports:
         - containerPort: 3306
         env:
