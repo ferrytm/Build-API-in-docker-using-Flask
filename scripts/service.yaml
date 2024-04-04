@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: song-api-service
+  name: topsong-service
 spec:
   selector:
-    app: song-api
+    app: topsong
   ports:
     - protocol: TCP
       port: 80
