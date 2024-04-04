@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: song-api-deployment
+  name: topsong
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: song-api
+      app: topsong
   template:
     metadata:
       labels:
-        app: song-api
+        app: topsong
     spec:
       containers:
-      - name: song-api
+      - name: topsong
         image: song-api:latest
         ports:
         - containerPort: 3000
