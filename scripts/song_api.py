@@ -26,7 +26,7 @@ mysql_host = 'localhost'
 mysql_port = 3306
 mysql_user = 'root'
 mysql_password = 'henshin'
-mysql_db = 'df_data'
+mysql_db = 'mysql'
 
 # Define API Endpoints
 @app.route('/')
