@@ -1,0 +1,114 @@
+
+## Installation
+#This documentation provides instructions for setting up PostgreSQL and MySQL databases using Docker.
+
+#Set Up a GCP Account:
+#If you haven't already, sign up for a GCP account at https://cloud.google.com/ and create a project.
+
+#Enable Kubernetes Engine API:
+#Go to the GCP Console, navigate to the Kubernetes Engine page, and enable the Kubernetes Engine API for your project.
+
+#Install Google Cloud SDK:
+#Install the Google Cloud SDK on your local machine. You can follow the instructions provided here: https://cloud.google.com/sdk/docs/install.
+
+#Set Up gcloud CLI:
+#Initialize gcloud by running gcloud init command and follow the instructions to authenticate and set the default project.
+
+gcloud init
+
+#Create a Kubernetes Cluster:
+#Use the following command to create a Kubernetes cluster:
+
+gcloud container clusters create taskcluster-ferry --num-nodes=3 --zone=asia-southeast1-a
+
+#Configure kubectl:
+#Run the following command to configure kubectl to use your newly created cluster:
+
+gcloud container clusters get-credentials taskcluster-ferry --zone asia-southeast1-a
+
+
+#Follow these steps to install Docker Desktop on your system:
+#1. [Download Docker Desktop](https://www.docker.com/products/docker-desktop)
+#2. Install Docker Desktop by following the on-screen instructions.
+
+
+## MYSQL Setup
+#1. Pull the latest MySQL image from Docker Hub:
+
+#mysql docker image installation
+
+docker pull mysql
+
+#test running the MYSQL image
+
+docker run --name mysqlDB -e MYSQL_ROOT_PASSWORD=henshin -d -p 3306:3306 mysql
+
+#Note: my password for mysql = henshin
+
+#Install MySQL Client (mysql):
+#You can download MySQL Community Server from the official MySQL website: MySQL Community Downloads (https://dev.mysql.com/downloads/mysql/)
+#Follow the installation instructions provided on the website.
+#During installation, make sure to select "MySQL Command Line Client" or "MySQL Shell" as part of the installation components.
+
+## Verify installation
+#verify the running images 
+
+docker ps
+
+#Configure mysql:
+#Open a command prompt or PowerShell window.
+#Use the following command to connect to the MySQL database:
+
+mysql -h localhost -u root -p -P 3306
+
+#You'll be prompted to enter the password you set when running the MySQL container.
+
+#Once configured, try executing some basic SQL commands to ensure connectivity. For example:
+#For PostgreSQL, you can try \l to list databases.
+#For MySQL, you can try SHOW DATABASES; to list databases.
+#If you can successfully connect and execute commands, it confirms that your Dockerized databases are accessible from your local machine.
+
+#Create API files with Flask 
+
+#prepare environment
+
+pip install flask pymysql pandas 
+
+pip install mysqlclient sqlalchemy
+
+#Create Docker Images:
+#Create Docker images for your API and MySQL services. Ensure that your API Docker container can connect to the MySQL Docker container.
+
+#Upload Docker Images to Google Container Registry (GCR):
+#Push your Docker images to GCR using the following commands:
+
+docker tag mysql asia.gcr.io/bfi-task/mysql
+docker push asia.gcr.io/bfi-task/mysql
+
+docker tag song_api asia.gcr.io/bfi-task/topsong
+docker push asia.gcr.io/bfi-task/topsong
+
+#Create Kubernetes Deployment YAML:
+#Create YAML files for Kubernetes Deployment objects for both API and MySQL services. Define the necessary configurations such as image names, ports, and environment variables.
+
+#Apply Kubernetes Deployments:
+#Apply the Kubernetes Deployment YAML files using the following commands:
+
+kubectl apply -f apideployment.yaml
+kubectl apply -f mysqldeployment.yaml
+kubectl apply -f service.yaml
+kubectl apply -f mysqlservice.yaml #to get mysql-service as hostname for the API
+
+#Notes : deploy mysql and it's service first then edit in the hostname in API script 
+
+#get the external IP from the API service or in Kubernetes Engine - workloads - topsong - overview - Exposing services
+kubectl get services
+
+NAME              TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)        AGE
+kubernetes        ClusterIP      10.52.240.1     <none>          443/TCP        4h11m
+mysql-service     ClusterIP      10.52.247.71    <none>          3306/TCP       128m
+topsong-service   LoadBalancer   10.52.253.152   34.142.219.34   80:32423/TCP   139m
+
+#access the API in  34.142.219.34/topsong
+#username : ferrytm 
+#password: henshin

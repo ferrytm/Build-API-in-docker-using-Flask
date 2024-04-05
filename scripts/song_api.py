@@ -22,7 +22,7 @@ def auth_required(f):
 logging.basicConfig(level=logging.DEBUG)
 
 # Define MySQL connection parameters
-mysql_host = 'localhost'
+mysql_host = 'mysql-service'
 mysql_port = 3306
 mysql_user = 'root'
 mysql_password = 'henshin'

@@ -6,7 +6,7 @@ COPY . .
 
 RUN pip install flask pymysql pandas 
 
-RUN pip install mysqlclient
+RUN pip install mysqlclient sqlalchemy
 
 EXPOSE 3000
 
