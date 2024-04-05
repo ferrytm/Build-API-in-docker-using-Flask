@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 
 df = pd.read_csv("./datasource/spotify_top_songs_audio_features.csv")
 
-engine = create_engine('mysql://root:henshin@10.108.2.9/mysql')
+engine = create_engine('mysql://root:henshin@mysql-service/mysql')
 
 
 logging.basicConfig(filename='./docs/song_recommended_api.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

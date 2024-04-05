@@ -9,6 +9,6 @@ spec:
     spec:
       containers:
       - name: load-data-container
-        image: asia.gcr.io/bfi-task/load_data:latest  # Replace with your load_data.py image name from GCR
+        image: asia.gcr.io/bfi-task/loadadata:latest  # Replace with your load_data.py image name from GCR
         command: ["python", "load_data.py"]
       restartPolicy: Never

@@ -17,6 +17,13 @@ spec:
         image: asia.gcr.io/bfi-task/mysqldb:latest
         ports:
         - containerPort: 3306
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "0.5"
+          limits:
+            memory: "2Gi"
+            cpu: "1"
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: henshin
