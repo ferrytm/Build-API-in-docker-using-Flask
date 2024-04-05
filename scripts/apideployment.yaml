@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: topsong
-        image: asia.gcr.io/bfi-task/topsong:latest
+        image: asia.gcr.io/taskcluster-ferry/topsong:latest
         ports:
         - containerPort: 3000
