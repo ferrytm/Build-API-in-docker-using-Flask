@@ -21,7 +21,7 @@ steps:
   args:
   - run
   - --filename=deployment.yaml
-  - --cluster=bfitask-k8s
+  - --cluster=taskcluster-ferry
   - --location=asia-southeast1-a
   timeout: 900s
 

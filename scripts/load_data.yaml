@@ -4,9 +4,11 @@ metadata:
   name: load-data-job
 spec:
   template:
+    metadata:
+      name: topsong
     spec:
       containers:
       - name: load-data-container
-        image: gcr.io/bfitask-k8s/load-data:latest  
+        image: asia.gcr.io/bfi-task/load_data:latest  # Replace with your load_data.py image name from GCR
         command: ["python", "load_data.py"]
       restartPolicy: Never
